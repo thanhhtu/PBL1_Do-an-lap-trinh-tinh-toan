@@ -20,13 +20,13 @@ int main(){
 	// START PROGRAM
 	DictNode *Dict[M];
 	init(Dict);
-	readDict(Dict);
-
 
 	int user_choice;
 	int is_continue;
 
 MENU:
+	readDict(Dict);
+
 	system("cls");
 	user_choice = menu();
 
@@ -103,13 +103,8 @@ MENU:
 
 		printf("------------- ADD WORD -------------\n\n");
 
-		//demo
-		printf("hello");
-		int i;
-		scanf("%d", &i);
-		getchar();
-		printf("%d", i);
-		//demo
+		fflush(stdin);
+		addWord(Dict);
 
 		is_continue = toContinue();
 		if (is_continue == 1){
@@ -128,6 +123,7 @@ MENU:
 
 		printf("------------- EDIT WORD -------------\n\n");
 
+		fflush(stdin);
 		//demo
 		printf("hello");
 		int i;
@@ -153,6 +149,7 @@ MENU:
 
 		printf("------------- DELETE WORD -------------\n\n");
 
+		fflush(stdin);
 		//demo
 		printf("hello");
 		int i;
