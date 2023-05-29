@@ -54,9 +54,8 @@ int toContinue(){
 	char choice;
 	printf("\nPress c to continue.\nPress b to back to menu.\nPress any key to exit the program.\n");
 	printf("Your choice: ");
-//	fflush(stdin);	//khong nen dung, nen thay bang getchar()	//lay dau cach nhung lan nhap lai tiep theo
 
-	scanf("\n");	//thay vi dung fflush(stdin) de xoa dau cach nhung lan nhap lai tiep theo hoac getchar trong main
+//	scanf("\n");	//thay vi dung fflush(stdin) de xoa dau cach nhung lan nhap lai tiep theo
 	scanf("%c", &choice);
 	if(choice == 'c'){
 		return 1;

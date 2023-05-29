@@ -1,5 +1,3 @@
-//tat ca cac chuoi deu chuyen sang in thuong
-
 #define M 2003	//kich thuoc hashtable
 
 //cau truc cua 1 tu vung
@@ -45,7 +43,7 @@ int hashFunct(char *str){
 }
 
 //them tu vao dict
-void addWord(DictNode *heads[], Vocab w){
+void addData(DictNode *heads[], Vocab w){
     int hash = hashFunct(w.english);
     DictNode *r = heads[hash];
     DictNode *new_word = createNode(w);
@@ -69,8 +67,6 @@ void addWord(DictNode *heads[], Vocab w){
     }
 }
 
-/* MENU 1 */
-//doc tu from dict to hash table
 void readDict(DictNode *heads[]){
     FILE *f = fopen("dict.txt", "a+");
 
@@ -81,22 +77,18 @@ void readDict(DictNode *heads[]){
         fgets(w.type, 255, f);
         fgets(w.meaning, 255, f);
 
-        addWord(heads, w);
+        addData(heads, w);
     }
     fclose(f);
 }
 
-//in ra man hinh
+/*MENU 1*/
 void viewDict(DictNode *heads[]){
-    readDict(heads);
 
     char temp1[256], temp2[256], temp3[256];
-
     int len1, len2, len3;
-
     int num_of_vocab = 0;
 
-    printf("------------- VIEW DICTIONARY -------------\n\n");
     printf("WORD\t\tTYPE\t\tMEANING\n");
 
     for(int i = 0; i < M; i++){
@@ -127,4 +119,57 @@ void viewDict(DictNode *heads[]){
     }
 
     printf("\nThere are %d vacabularies in this dictionary.\n", num_of_vocab);
+}
+
+/*MENU 3*/
+void toLower(char str[]){
+    for(int i = 0; i < strlen(str); i++){
+        str[i] = tolower(str[i]);
+    }
+}
+
+void searchWord(DictNode *heads[]){
+
+    char eng[256];
+    printf("Enter the word you want to search: ");
+    fgets(eng, 255, stdin);
+    printf("\nIntput word: %s", eng);
+    toLower(eng);
+
+    char temp1[256], temp2[256], temp3[256];
+    int len1, len2, len3;
+
+    int h = hashFunct(eng);
+
+    DictNode *r = heads[h];
+
+    while(r != NULL){
+        int h1 = hashFunct(r->word.english);
+        if(h == h1){
+            while(r != NULL){
+                if(strcmp(r->word.english, eng) == 0){
+                    
+                    strcpy(temp1, r->word.english);
+                    strcpy(temp2, r->word.type);
+                    strcpy(temp3, r->word.meaning);
+
+                    len1 = strlen(temp1);
+                    len2 = strlen(temp2);
+                    len3 = strlen(temp3);
+
+                    temp1[len1 - 1] = '\0';
+                    temp2[len2 - 1] = '\0';
+                    temp3[len3 - 1] = '\0';
+
+                    printf("\nWORD\t\tTYPE\t\tMEANING\n");
+                    printf("%s\t\t%s\t\t%s\n", temp1, temp2, temp3);
+
+                    return;
+                }
+            }
+        }
+        r = r->next;
+    }
+
+    printf("\nOh no! This word is not in the dictionary!\n");
 }

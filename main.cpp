@@ -20,7 +20,9 @@ int main(){
 	// START PROGRAM
 	DictNode *Dict[M];
 	init(Dict);
-	
+	readDict(Dict);
+
+
 	int user_choice;
 	int is_continue;
 
@@ -33,6 +35,9 @@ MENU:
 	VIEW:
 		system("cls");
 
+		printf("------------- VIEW DICTIONARY -------------\n\n");
+
+		fflush(stdin);	//tranh dau cach nhung lan nhap lai
 		viewDict(Dict);
 
 		is_continue = toContinue();
@@ -51,16 +56,17 @@ MENU:
 	GAME:
 		system("cls");
 
+		printf("------------- PLAY GAME -------------\n\n");
+
 		//demo
 		printf("hello");
 		int i;
 		scanf("%d", &i);
-//		getchar();
+		getchar();
 		printf("%d", i);
 		//demo
 
 		is_continue = toContinue();
-
 		if (is_continue == 1){
 			goto GAME;
 		}
@@ -75,16 +81,12 @@ MENU:
 	SEARCH:
 		system("cls");
 
-		//demo
-		printf("hello");
-		int i;
-		scanf("%d", &i);
-		getchar();
-		printf("%d", i);
-		//demo
+		printf("------------- SEARCH WORD -------------\n\n");
+
+		fflush(stdin);
+		searchWord(Dict);
 
 		is_continue = toContinue();
-
 		if (is_continue == 1){
 			goto SEARCH;
 		}
@@ -99,6 +101,8 @@ MENU:
 	ADD:
 		system("cls");
 
+		printf("------------- ADD WORD -------------\n\n");
+
 		//demo
 		printf("hello");
 		int i;
@@ -108,7 +112,6 @@ MENU:
 		//demo
 
 		is_continue = toContinue();
-
 		if (is_continue == 1){
 			goto ADD;
 		}
@@ -123,6 +126,8 @@ MENU:
 	EDIT:
 		system("cls");
 
+		printf("------------- EDIT WORD -------------\n\n");
+
 		//demo
 		printf("hello");
 		int i;
@@ -132,7 +137,6 @@ MENU:
 		//demo
 
 		is_continue = toContinue();
-
 		if (is_continue == 1){
 			goto EDIT;
 		}
@@ -147,6 +151,8 @@ MENU:
 	DELETE:
 		system("cls");
 
+		printf("------------- DELETE WORD -------------\n\n");
+
 		//demo
 		printf("hello");
 		int i;
@@ -156,7 +162,6 @@ MENU:
 		//demo
 
 		is_continue = toContinue();
-
 		if (is_continue == 1){
 			goto VIEW;
 		}
@@ -170,6 +175,6 @@ MENU:
 		break;
 	}
 
-	printf("Goodbye and see you again!");
+	printf("\nGOODBYE AND SEE YOU AGAIN!!");
 	return 0;
 }
