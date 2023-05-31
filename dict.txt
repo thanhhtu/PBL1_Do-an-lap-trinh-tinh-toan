@@ -163,6 +163,6 @@ am nhac
 hello
 noun
 xin chao
-big
-adj
-to
+add
+verb
+them vao

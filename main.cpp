@@ -21,12 +21,12 @@ int main(){
 	DictNode *Dict[M];
 	init(Dict);
 
+	readDict(Dict);
+
 	int user_choice;
 	int is_continue;
 
 MENU:
-	readDict(Dict);
-
 	system("cls");
 	user_choice = menu();
 

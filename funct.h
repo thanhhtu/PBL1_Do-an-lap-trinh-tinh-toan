@@ -121,88 +121,115 @@ void viewDict(DictNode *heads[]){
     printf("\nThere are %d vacabularies in this dictionary.\n", num_of_vocab);
 }
 
-/*MENU 3*/
+//
 void toLower(char str[]){
     for(int i = 0; i < strlen(str); i++){
         str[i] = tolower(str[i]);
     }
 }
 
-void searchWord(DictNode *heads[]){
+int findData(DictNode *heads[], char eng[], DictNode *&r){
+    int h = hashFunct(eng);
+    r = heads[h];
+    
+    //neu r == NULL => tai do khong co tu nao het
+    while(r != NULL){
+        if(strcmp(r->word.english, eng) == 0){  
+            return 0;   //tim duoc
+        }
+        r = r->next;
+    }
+    return 1;
+}
 
+/*MENU 3*/
+void searchWord(DictNode *heads[]){
     char eng[256];
     printf("Enter the word you want to search: ");
     fgets(eng, 255, stdin);
-    printf("\nIntput word: %s", eng);
     toLower(eng);
+    printf("\nIntput word: %s", eng);
 
     char temp1[256], temp2[256], temp3[256];
     int len1, len2, len3;
 
-    int h = hashFunct(eng);
+    DictNode *r = NULL;
+    if(findData(heads, eng, r) == 0){
+        strcpy(temp1, r->word.english);
+        strcpy(temp2, r->word.type);
+        strcpy(temp3, r->word.meaning);
 
-    DictNode *r = heads[h];
+        len1 = strlen(temp1);
+        len2 = strlen(temp2);
+        len3 = strlen(temp3);
+        temp1[len1 - 1] = '\0';
+        temp2[len2 - 1] = '\0';
+        temp3[len3 - 1] = '\0';
 
-    //neu r == NULL => tai do khong co tu nao het
-    while(r != NULL){
-        if(strcmp(r->word.english, eng) == 0){
-                    
-            strcpy(temp1, r->word.english);
-            strcpy(temp2, r->word.type);
-            strcpy(temp3, r->word.meaning);
+        printf("\nWORD\t\tTYPE\t\tMEANING\n");
+        printf("%s\t\t%s\t\t%s\n", temp1, temp2, temp3);
 
-            len1 = strlen(temp1);
-            len2 = strlen(temp2);
-            len3 = strlen(temp3);
-            temp1[len1 - 1] = '\0';
-            temp2[len2 - 1] = '\0';
-            temp3[len3 - 1] = '\0';
-
-            printf("\nWORD\t\tTYPE\t\tMEANING\n");
-            printf("%s\t\t%s\t\t%s\n", temp1, temp2, temp3);
-
-            return;
-            }
-        r = r->next;
+        return;
+    }else{
+        printf("\nOh no! This word is not in the dictionary!\n");
     }
-
-    printf("\nOh no! This word is not in the dictionary!\n");
 }
 
-/*MENU 2*/
+/*MENU 4*/
 void addWord(DictNode *heads[]){
     FILE *f = fopen("dict.txt", "a+");
 
     Vocab w;
-
     printf("Enter the English word you want to add: ");
     fgets(w.english, 255, stdin);
     toLower(w.english);
 
     //kiem tra da co trong tu dien chua
-    int h = hashFunct(w.english);
-    DictNode *r = heads[h];
-    //neu r == NULL => tai do khong co tu nao het
-    while(r != NULL){
-        if(strcmp(r->word.english, w.english) == 0){
-            printf("\nOhh no! This word has been in the dictionary!\n");
-            return;
-            }
-        r = r->next;
+    DictNode *r = NULL;
+    if(findData(heads, w.english, r) == 0){
+        printf("\nOhh no! This word has been in the dictionary!\n");
+        return;
+    }else{
+        printf("Enter its type: ");
+        fgets(w.type, 255, stdin);
+        toLower(w.type);
+        printf("Enter its meaning: ");
+        fgets(w.meaning, 255, stdin);
+        toLower(w.meaning);
+
+        fprintf(f, "%s%s%s", w.english, w.type, w.meaning);
+
+        addData(heads, w);
+
+        printf("\nSuccess!\n");
     }
-    
-    printf("Enter its type: ");
-    fgets(w.type, 255, stdin);
-    toLower(w.type);
-    printf("Enter its meaning: ");
-    fgets(w.meaning, 255, stdin);
-    toLower(w.meaning);
-
-    fprintf(f, "%s%s%s", w.english, w.type, w.meaning);
-
-    addData(heads, w);
-
-    printf("\nSuccess!\n");
 
     fclose(f);
+}
+
+/*MENU 6*/
+void deleteData(DictNode *heads[], DictNode *str){
+
+}
+
+void deleteWord(DictNode *heads[]){
+    char eng[256];
+    printf("Enter the word you want to delete: ");
+    fgets(eng, 255, stdin);
+    toLower(eng);
+    printf("\nIntput word: %s", eng);
+
+    char temp1[256], temp2[256], temp3[256];
+    int len1, len2, len3;
+
+    DictNode *r = NULL;
+    if(findData(heads, eng, r) == 0){
+        /////
+
+        printf("Success!");
+
+        return;
+    }else{
+        printf("\nOh no! This word is not in the dictionary!\n");
+    }
 }
