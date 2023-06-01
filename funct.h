@@ -180,7 +180,7 @@ void addWord(DictNode *heads[]){
     //kiem tra da co trong tu dien chua
     DictNode *r = NULL;
     if(findData(heads, w.english, r) == 0){
-        printf("\nOhh no! This word has been in the dictionary!\n");
+        printf("\nOh no! This word has been in the dictionary!\n");
         return;
     }else{
         printf("Enter its type: ");
@@ -192,7 +192,7 @@ void addWord(DictNode *heads[]){
 
         addData(heads, w);
 
-        printf("\nAdd successfully!\n");
+        printf("\nSuccessfully added!\n");
     }
 }
 
@@ -234,7 +234,7 @@ void deleteWord(DictNode *heads[]){
     int len1, len2, len3;
 
     if(deleteData(heads, eng) == 0){
-        printf("\nDelete successfully!\n");
+        printf("\nSuccessfully deleted!\n");
         return;
     }else{
         printf("\nOh no! This word is not in the dictionary!\n");
@@ -301,7 +301,7 @@ void editWord(DictNode *heads[]){
                 fgets(w.english, 255, stdin);
                 toLower(w.english);
 
-                printf("\nEdit successfully!\n");
+                printf("\nSuccessfully edited!\n");
                 break;
             }
             case 2:{
@@ -309,7 +309,7 @@ void editWord(DictNode *heads[]){
                 fgets(w.type, 255, stdin);
                 toLower(w.type);
 
-                printf("\nEdit successfully!\n");
+                printf("\nSuccessfully edited!\n");
                 break;
             }
             case 3:{
@@ -317,7 +317,7 @@ void editWord(DictNode *heads[]){
                 fgets(w.meaning, 255, stdin);
                 toLower(w.meaning);
 
-                printf("\nEdit successfully!\n");
+                printf("\nSuccessfully edited!\n");
                 break;
             }
             default:{
