@@ -22,7 +22,7 @@ void init(DictNode *heads[]){
     }
 } 
 
-//khai bao node
+//khoi tao node moi
 DictNode * createNode(Vocab w){
     DictNode *new_word = (DictNode *)malloc(sizeof(DictNode));
     new_word->word = w;
@@ -30,7 +30,7 @@ DictNode * createNode(Vocab w){
     return new_word;
 }
 
-//tao hash funct djb2
+//hash funct djb2
 int hashFunct(char *str){
     unsigned long hash = 5381;
     int c;
@@ -82,6 +82,25 @@ void readDict(DictNode *heads[]){
     fclose(f);
 }
 
+//hien thi
+void display(DictNode *r){
+    char temp1[256], temp2[256], temp3[256];
+    int len1, len2, len3;
+    strcpy(temp1, r->word.english);
+    strcpy(temp2, r->word.type);
+    strcpy(temp3, r->word.meaning);
+
+    len1 = strlen(temp1);
+    len2 = strlen(temp2);
+    len3 = strlen(temp3);
+
+    temp1[len1 - 1] = '\0';
+    temp2[len2 - 1] = '\0';
+    temp3[len3 - 1] = '\0';
+
+    printf("%s\t\t%s\t\t%s\n", temp1, temp2, temp3);
+}
+
 /*MENU 1*/
 void viewDict(DictNode *heads[]){
 
@@ -97,20 +116,8 @@ void viewDict(DictNode *heads[]){
             DictNode *new_word = heads[i]; 
 
             while(new_word != NULL){
-                
-                strcpy(temp1, new_word->word.english);
-                strcpy(temp2, new_word->word.type);
-                strcpy(temp3, new_word->word.meaning);
-
-                len1 = strlen(temp1);
-                len2 = strlen(temp2);
-                len3 = strlen(temp3);
-
-                temp1[len1 - 1] = '\0';
-                temp2[len2 - 1] = '\0';
-                temp3[len3 - 1] = '\0';
-
-                printf("%s\t\t%s\t\t%s\n", temp1, temp2, temp3);
+            
+                display(new_word);
 
                 new_word = new_word->next;
                 num_of_vocab++;
@@ -121,13 +128,14 @@ void viewDict(DictNode *heads[]){
     printf("\nThere are %d vacabularies in this dictionary.\n", num_of_vocab);
 }
 
-//
+//lower
 void toLower(char str[]){
     for(int i = 0; i < strlen(str); i++){
         str[i] = tolower(str[i]);
     }
 }
 
+//find data
 int findData(DictNode *heads[], char eng[], DictNode *&r){
     int h = hashFunct(eng);
     r = heads[h];
@@ -150,24 +158,11 @@ void searchWord(DictNode *heads[]){
     toLower(eng);
     printf("\nIntput word: %s", eng);
 
-    char temp1[256], temp2[256], temp3[256];
-    int len1, len2, len3;
-
     DictNode *r = NULL;
     if(findData(heads, eng, r) == 0){
-        strcpy(temp1, r->word.english);
-        strcpy(temp2, r->word.type);
-        strcpy(temp3, r->word.meaning);
-
-        len1 = strlen(temp1);
-        len2 = strlen(temp2);
-        len3 = strlen(temp3);
-        temp1[len1 - 1] = '\0';
-        temp2[len2 - 1] = '\0';
-        temp3[len3 - 1] = '\0';
-
+       
         printf("\nWORD\t\tTYPE\t\tMEANING\n");
-        printf("%s\t\t%s\t\t%s\n", temp1, temp2, temp3);
+        display(r);
 
         return;
     }else{
@@ -177,8 +172,6 @@ void searchWord(DictNode *heads[]){
 
 /*MENU 4*/
 void addWord(DictNode *heads[]){
-    FILE *f = fopen("dict.txt", "a+");
-
     Vocab w;
     printf("Enter the English word you want to add: ");
     fgets(w.english, 255, stdin);
@@ -197,21 +190,39 @@ void addWord(DictNode *heads[]){
         fgets(w.meaning, 255, stdin);
         toLower(w.meaning);
 
-        fprintf(f, "%s%s%s", w.english, w.type, w.meaning);
-
         addData(heads, w);
 
-        printf("\nSuccess!\n");
+        printf("\nAdd successfully!\n");
+    }
+}
+
+//delete data
+int deleteData(DictNode *heads[], char eng[]){
+    int h = hashFunct(eng);
+
+    DictNode *r = heads[h]; //node k muon xoa
+    DictNode *prev = NULL;  //node k - 1
+
+    //neu r == NULL => tai do khong co tu nao het
+    while(r != NULL){
+        if(strcmp(r->word.english, eng) == 0){
+            if(prev == NULL){
+                heads[h] = r->next;
+            }else{
+                prev->next = r->next;
+            }
+            free(r);
+            return 0;
+        }
+        prev = r;
+        r = r->next;
     }
 
-    fclose(f);
+    return 1;
+    
 }
 
 /*MENU 6*/
-void deleteData(DictNode *heads[], DictNode *str){
-
-}
-
 void deleteWord(DictNode *heads[]){
     char eng[256];
     printf("Enter the word you want to delete: ");
@@ -222,14 +233,107 @@ void deleteWord(DictNode *heads[]){
     char temp1[256], temp2[256], temp3[256];
     int len1, len2, len3;
 
+    if(deleteData(heads, eng) == 0){
+        printf("\nDelete successfully!\n");
+        return;
+    }else{
+        printf("\nOh no! This word is not in the dictionary!\n");
+    }
+}
+
+//update dict sau moi lan chay chuong trinh
+void updateDict(DictNode *heads[]){
+
+    //tao 1 file moi de luu tru du lieu
+    FILE *f = fopen("temp.txt", "w");
+
+    for(int i = 0; i < M; i++){
+        DictNode *r = heads[i];
+
+        while(r != NULL){
+            fprintf(f, "%s%s%s", r->word.english, r->word.type, r->word.meaning);
+            r = r->next;
+        }
+    }
+    
+    fclose(f);
+
+    //xoa file dict.txt cu
+    remove("dict.txt");
+
+    //doi ten file temp.txt moi thanh dict.txt
+    rename("temp.txt", "dict.txt");
+
+}
+
+/*MENU 5*/
+void editWord(DictNode *heads[]){
+    Vocab w;    //de luu tu moi
+
+    char eng[256];
+    printf("Enter the word you want to edit: ");
+    fgets(eng, 255, stdin);
+    toLower(eng);
+
     DictNode *r = NULL;
     if(findData(heads, eng, r) == 0){
-        /////
+        //hien thi tu muon sua
+        printf("\nWORD\t\tTYPE\t\tMEANING\n");
+        display(r);
 
-        printf("Success!");
+        //sao chep tu muon sua
+        strcpy(w.english, r->word.english);
+        strcpy(w.type, r->word.type);
+        strcpy(w.meaning, r->word.meaning);
+
+        //sua
+        int choice;
+        printf("\nPress:\n");
+        printf("1. To edit word.\n2. To edit type.\n3. To edit type.\nAny key to exit.\n");
+
+        printf("Your choice: ");
+        scanf("%d", &choice);
+        getchar();
+
+        switch(choice){
+            case 1:{
+                printf("\nEnter new English word: ");
+                fgets(w.english, 255, stdin);
+                toLower(w.english);
+
+                printf("\nEdit successfully!\n");
+                break;
+            }
+            case 2:{
+                printf("\nEnter new type: ");
+                fgets(w.type, 255, stdin);
+                toLower(w.type);
+
+                printf("\nEdit successfully!\n");
+                break;
+            }
+            case 3:{
+                printf("\nEnter new meaning: ");
+                fgets(w.meaning, 255, stdin);
+                toLower(w.meaning);
+
+                printf("\nEdit successfully!\n");
+                break;
+            }
+            default:{
+                fflush(stdin);
+                break;
+            }
+        }
+
+        //xoa tu cu ra khoi tu dien
+        deleteData(heads, w.english);
+        //them tu moi sua vao tu dien
+        addData(heads, w);
 
         return;
     }else{
         printf("\nOh no! This word is not in the dictionary!\n");
     }
+
 }

@@ -1,168 +1,165 @@
-air
-noun
-khong khi 
-animal
-noun
-dong vat
-area
-noun
-khu vuc
-art
-noun
-nghe thuat
-bad
-adj
-xau
-book
-noun
-quyen sach
-both
-adv
-ca hai
-buy
-verb
-mua
-camera
-noun
-may anh
-capital
-noun
-thu do
-cause
-verb
-gay ra
-certain
-adj
-chac chan
-change
-verb
-thay doi
-check
-verb
-kiem tra
-city
-noun
-thanh pho
-class
-noun
-lop hoc
-color
-noun
-mau sac
-come
-verb
-den
-common
-adj
-chung
-compare
-verb
-so sanh
-detail
-noun
-chi tiet
-discuss
-verb
-thao luan
-early
-adj
-som
-easy
-adj
-de dang
-eat
-verb
-an
-energy
-noun
-nang luong
-enjoy
-verb
-thich thu
-family
-noun
-gia dinh
-fast
-adj
-nhanh
-fish
-noun
-con ca
-food
-noun
-do an
-future
-noun
-tuong lai
-game
-noun
-tro choi
-give
-verb
-nhan duoc
-glass
-noun
-thuy tinh
-good
-adj
-tot
-happen
-verb
-xay ra
-happy
-adj
-hanh phuc
-hope
-noun
-hy vong
-idea
-noun
-y tuong
-learn
-verb
-hoc
-list
-noun
-danh sach
-listen
-verb
-lang nghe
-little
-adj
-nho be
-look
-verb
-nhin
-paper
-noun
-giay
-party
-noun
-bua tiec
-prepare
-verb
-chuan bi
 private
 adj
 rieng tu
+camera
+noun
+may anh
+eat
+verb
+an
+both
+adv
+ca hai
+look
+verb
+nhin
+cause
+verb
+gay ra
+fish
+noun
+con ca
+buy
+verb
+mua
+family
+noun
+gia dinh
 provide
 verb
 cung cap
+detail
+noun
+chi tiet
+hope
+noun
+hy vong
+come
+verb
+den
+class
+noun
+lop hoc
+discuss
+verb
+thao luan
+little
+adj
+nho be
+game
+noun
+tro choi
+book
+noun
+quyen sach
+learn
+verb
+hoc
+happen
+verb
+xay ra
+change
+verb
+thay doi
+art
+noun
+nghe thuat
+capital
+noun
+thu do
+area
+noun
+khu vuc
+food
+noun
+do an
+energy
+noun
+nang luong
+air
+noun
+khong khi 
+early
+adj
+som
+common
+adj
+chung
+animal
+noun
+dong vat
 public
 noun
 cong khai
+listen
+verb
+lang nghe
+good
+adj
+tot
+enjoy
+verb
+thich thu
+certain
+adj
+chac chan
+color
+noun
+mau sac
+future
+noun
+tuong lai
+city
+noun
+thanh pho
 option
 noun
 su lua chon
-goodbye
+list
 noun
-tam biet
+danh sach
+compare
+verb
+so sanh
+give
+verb
+nhan duoc
+happy
+adj
+hanh phuc
+fast
+adj
+nhanh
+easy
+adj
+de dang
+paper
+noun
+giay
 music
 noun
 am nhac
+glass
+noun
+thuy tinh
+idea
+noun
+y tuong
+goodbye
+noun
+tam biet
+prepare
+verb
+chuan bi
+bad
+adj
+xau
+check
+verb
+kiem tra
+party
+noun
+bua tiec
 hello
 noun
 xin chao
-add
-verb
-them vao

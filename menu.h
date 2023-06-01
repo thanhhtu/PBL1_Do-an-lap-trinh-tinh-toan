@@ -39,11 +39,7 @@ int menu(){
 		getchar();	//LAY DAU CACH
 		if(!(choice == (int)choice && choice >= 1 && choice <= 7)){
 			printf("Invalid input!! Please choose again.\n\n");
-//			system("cls");		//sau moi lan nhap loi thi xoa man hinh -> hien lai menu [k can lam]
-		}/*else{
-			system("cls");		//khi da chon dung thi xoa man hinh roi bat dau chuong trinh con [k can]
-			break;
-		}*/
+		}
 		
 	}while(!(choice == (int)choice && choice >= 1 && choice <= 7));
 	
@@ -57,9 +53,9 @@ int toContinue(){
 
 //	scanf("\n");	//thay vi dung fflush(stdin) de xoa dau cach nhung lan nhap lai tiep theo
 	scanf("%c", &choice);
-	if(choice == 'c'){
+	if(choice == 'c' || choice == 'C'){
 		return 1;
-	}else if(choice == 'b'){
+	}else if(choice == 'b' || choice == 'B'){
 		return 2;
 	}else{
 		return 0;

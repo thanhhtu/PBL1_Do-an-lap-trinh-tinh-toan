@@ -30,148 +30,138 @@ MENU:
 	system("cls");
 	user_choice = menu();
 
-	switch (user_choice){
-	case 1:{
-	VIEW:
-		system("cls");
+	switch(user_choice){
+		case 1:{
+		VIEW:
+			system("cls");
 
-		printf("------------- VIEW DICTIONARY -------------\n\n");
+			printf("------------- VIEW DICTIONARY -------------\n\n");
 
-		fflush(stdin);	//tranh dau cach nhung lan nhap lai
-		viewDict(Dict);
+			fflush(stdin);	//tranh dau cach nhung lan nhap lai
+			viewDict(Dict);
 
-		is_continue = toContinue();
+			is_continue = toContinue();
 
-		if (is_continue == 1){
-			goto VIEW;
+			if(is_continue == 1){
+				goto VIEW;
+			}
+			else if(is_continue == 2){
+				goto MENU;
+			}
+
+			break;
 		}
-		else if (is_continue == 2){
-			goto MENU;
+
+		case 2:{
+		GAME:
+			system("cls");
+
+			printf("------------- PLAY GAME -------------\n\n");
+
+			//demo
+			printf("hello");
+			int i;
+			scanf("%d", &i);
+			getchar();
+			printf("%d", i);
+			//demo
+
+			is_continue = toContinue();
+			if(is_continue == 1){
+				goto GAME;
+			}
+			else if(is_continue == 2){
+				goto MENU;
+			}
+
+			break;
 		}
 
-		break;
+		case 3:{
+		SEARCH:
+			system("cls");
+
+			printf("------------- SEARCH WORD -------------\n\n");
+
+			fflush(stdin);
+			searchWord(Dict);
+
+			is_continue = toContinue();
+			if(is_continue == 1){
+				goto SEARCH;
+			}
+			else if (is_continue == 2){
+				goto MENU;
+			}
+
+			break;
+		}
+
+		case 4:{
+		ADD:
+			system("cls");
+
+			printf("------------- ADD WORD -------------\n\n");
+
+			fflush(stdin);
+			addWord(Dict);
+
+			is_continue = toContinue();
+			if(is_continue == 1){
+				goto ADD;
+			}
+			else if(is_continue == 2){
+				goto MENU;
+			}
+
+			break;
+		}
+
+		case 5:{
+		EDIT:
+			system("cls");
+
+			printf("------------- EDIT WORD -------------\n\n");
+
+			fflush(stdin);
+			editWord(Dict);
+
+			is_continue = toContinue();
+			if(is_continue == 1){
+				goto EDIT;
+			}
+			else if(is_continue == 2){
+				goto MENU;
+			}
+
+			break;
+		}
+
+		case 6:{
+		DELETE:
+			system("cls");
+
+			printf("------------- DELETE WORD -------------\n\n");
+
+			fflush(stdin);
+			deleteWord(Dict);
+
+			is_continue = toContinue();
+			if(is_continue == 1){
+				goto DELETE;
+			}
+			else if(is_continue == 2){
+				goto MENU;
+			}
+
+			break;
+		}
+		default:{
+			break;
+		}
 	}
 
-	case 2:{
-	GAME:
-		system("cls");
-
-		printf("------------- PLAY GAME -------------\n\n");
-
-		//demo
-		printf("hello");
-		int i;
-		scanf("%d", &i);
-		getchar();
-		printf("%d", i);
-		//demo
-
-		is_continue = toContinue();
-		if (is_continue == 1){
-			goto GAME;
-		}
-		else if (is_continue == 2){
-			goto MENU;
-		}
-
-		break;
-	}
-
-	case 3:{
-	SEARCH:
-		system("cls");
-
-		printf("------------- SEARCH WORD -------------\n\n");
-
-		fflush(stdin);
-		searchWord(Dict);
-
-		is_continue = toContinue();
-		if (is_continue == 1){
-			goto SEARCH;
-		}
-		else if (is_continue == 2){
-			goto MENU;
-		}
-
-		break;
-	}
-
-	case 4:{
-	ADD:
-		system("cls");
-
-		printf("------------- ADD WORD -------------\n\n");
-
-		fflush(stdin);
-		addWord(Dict);
-
-		is_continue = toContinue();
-		if (is_continue == 1){
-			goto ADD;
-		}
-		else if (is_continue == 2){
-			goto MENU;
-		}
-
-		break;
-	}
-
-	case 5:{
-	EDIT:
-		system("cls");
-
-		printf("------------- EDIT WORD -------------\n\n");
-
-		fflush(stdin);
-		//demo
-		printf("hello");
-		int i;
-		scanf("%d", &i);
-		getchar();
-		printf("%d", i);
-		//demo
-
-		is_continue = toContinue();
-		if (is_continue == 1){
-			goto EDIT;
-		}
-		else if (is_continue == 2){
-			goto MENU;
-		}
-
-		break;
-	}
-
-	case 6:{
-	DELETE:
-		system("cls");
-
-		printf("------------- DELETE WORD -------------\n\n");
-
-		fflush(stdin);
-		//demo
-		printf("hello");
-		int i;
-		scanf("%d", &i);
-		getchar();
-		printf("%d", i);
-		//demo
-
-		is_continue = toContinue();
-		if (is_continue == 1){
-			goto VIEW;
-		}
-		else if (is_continue == 2){
-			goto DELETE;
-		}
-
-		break;
-	}
-	default:
-		break;
-	}
-
+	updateDict(Dict);
 	printf("\nGOODBYE AND SEE YOU AGAIN!!");
 	return 0;
 }
