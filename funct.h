@@ -286,17 +286,20 @@ void editWord(DictNode *heads[]){
         strcpy(w.type, r->word.type);
         strcpy(w.meaning, r->word.meaning);
 
+        //xoa tu cu ra khoi tu dien
+        deleteData(heads, eng);
+
         //sua
-        int choice;
+        char choice;
         printf("\nPress:\n");
         printf("1. To edit word.\n2. To edit type.\n3. To edit type.\nAny key to exit.\n");
 
         printf("Your choice: ");
-        scanf("%d", &choice);
+        scanf("%c", &choice);
         getchar();
 
         switch(choice){
-            case 1:{
+            case '1':{
                 printf("\nEnter new English word: ");
                 fgets(w.english, 255, stdin);
                 toLower(w.english);
@@ -304,7 +307,7 @@ void editWord(DictNode *heads[]){
                 printf("\nSuccessfully edited!\n");
                 break;
             }
-            case 2:{
+            case '2':{
                 printf("\nEnter new type: ");
                 fgets(w.type, 255, stdin);
                 toLower(w.type);
@@ -312,7 +315,7 @@ void editWord(DictNode *heads[]){
                 printf("\nSuccessfully edited!\n");
                 break;
             }
-            case 3:{
+            case '3':{
                 printf("\nEnter new meaning: ");
                 fgets(w.meaning, 255, stdin);
                 toLower(w.meaning);
@@ -321,13 +324,11 @@ void editWord(DictNode *heads[]){
                 break;
             }
             default:{
-                fflush(stdin);
                 break;
             }
         }
 
-        //xoa tu cu ra khoi tu dien
-        deleteData(heads, w.english);
+        
         //them tu moi sua vao tu dien
         addData(heads, w);
 
