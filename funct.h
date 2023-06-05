@@ -103,9 +103,6 @@ void display(DictNode *r){
 
 /*MENU 1*/
 void viewDict(DictNode *heads[]){
-
-    char temp1[256], temp2[256], temp3[256];
-    int len1, len2, len3;
     int num_of_vocab = 0;
 
     printf("WORD\t\tTYPE\t\tMEANING\n");
