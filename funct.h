@@ -15,6 +15,26 @@ struct DictNode{
 };
 typedef struct DictNode DictNode;
 
+void addData(DictNode *heads[], Vocab w);
+void addWord(DictNode *heads[]);
+DictNode* createNode(Vocab w);
+int deleteData(DictNode *heads[], char eng[]);
+void deleteWord(DictNode *heads[]);
+void display(DictNode *r);
+void editWord(DictNode *heads[]);
+int findData(DictNode *heads[], char eng[], DictNode *&r);
+int hashFunct(char *str);
+int index(DictNode *heads[], int not_nulll);
+void init(DictNode *heads[]);
+void playGame(DictNode *heads[], int not_null[], int number_of_not_null);
+int random(int lenght);
+void readDict(DictNode *heads[]);
+int replace(char eng[]);
+void searchWord(DictNode *heads[]);
+void tolower(char eng[]);
+void updateDict(DictNode *heads[]);
+void viewDict(DictNode *heads[]);
+
 //khoi tao hashtable
 void init(DictNode *heads[]){
     for(int i = 0; i < M; i++){
@@ -242,27 +262,26 @@ void playGame(DictNode *heads[], int not_null[], int number_of_not_null){
 			printf("\nGreat! That is the correct answer!\n");
             printf("\nWORD\t\tTYPE\t\tMEANING\n");
             display(heads[hashFunct(eng)]); 
-			printf("\n\n");
+			printf("\n");
 			point++;
 			system("pause");
 			continue;
 		}
 
-        // DictNode *r;
-		// if (findData(heads[hashFunct(temp)], temp, r) == 1) {
-		// 	printf("\nNice! That is correct!\n");
-		// 	display(r);
-		// 	printf("\n\n");
-		// 	point++;
-		// 	system("pause");
-		// 	continue;
-		// }
+        DictNode *r = NULL;
+		if (findData(heads, temp, r) == 0) {
+			printf("\nNice! That is correct!\n");
+			printf("\nWORD\t\tTYPE\t\tMEANING\n");
+			display(r);
+			printf("\n");
+			point++;
+			system("pause");
+			continue;
+		}
 
 		break;
 	}while(1);
 
-//	system("cls");
-//	printf("Your answer: %s", temp);
 	printf("\nOh no, that is the wrong answer!");
 	printf("\n\nThe answer must be: %s", eng);
     printf("\nWORD\t\tTYPE\t\tMEANING\n");
