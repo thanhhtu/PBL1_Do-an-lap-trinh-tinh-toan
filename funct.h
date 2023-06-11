@@ -214,7 +214,7 @@ int random(int lenght){
 int replace(char eng[]){ 
 	int lenght, random_pos;
 	lenght = strlen(eng);
-	random_pos = random(lenght); //chon bat ki 1 vi tri so trong word
+	random_pos = random(lenght); //chon bat ki 1 vi tri so trong eng
 	eng[random_pos] = '*';
 	return random_pos; //tra ve vi tri thay dau *
 }

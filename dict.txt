@@ -100,9 +100,6 @@ tot
 enjoy
 verb
 thich thu
-add
-verb
-them vao
 certain
 adj
 chac chan
@@ -112,6 +109,9 @@ mau sac
 future
 noun
 tuong lai
+add 
+verb
+them vao
 city
 noun
 thanh pho
