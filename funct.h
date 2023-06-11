@@ -357,7 +357,7 @@ void editWord(DictNode *heads[]){
         //sua
         char choice;
         printf("\nPress:\n");
-        printf("1. To edit word.\n2. To edit type.\n3. To edit type.\nAny key to exit.\n");
+        printf("1. To edit word.\n2. To edit type.\n3. To edit meaning.\nAny key to exit.\n");
         printf("Your choice: ");
         scanf("%c", &choice);
         getchar();
