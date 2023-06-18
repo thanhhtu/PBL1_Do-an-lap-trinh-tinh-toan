@@ -37,7 +37,7 @@ MENU:
 			system("cls");
 			printf("------------- VIEW DICTIONARY -------------\n\n");
 
-			fflush(stdin);	//tranh dau cach nhung lan nhap lai
+			fflush(stdin);
 			viewDict(Dict);
 
 			is_continue = toContinue();

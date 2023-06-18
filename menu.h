@@ -36,7 +36,7 @@ int menu(){
 		
 		printf("\nYour choice: ");
 		scanf("%f", &choice);
-		getchar();	//LAY DAU CACH
+		getchar();
 		if(!(choice == (int)choice && choice >= 1 && choice <= 7)){
 			printf("Invalid input!! Please choose again.\n\n");
 		}
@@ -51,7 +51,6 @@ int toContinue(){
 	printf("\nPress c to continue.\nPress b to back to menu.\nPress any key to exit the program.\n");
 	printf("Your choice: ");
 
-//	scanf("\n");	//thay vi dung fflush(stdin) de xoa dau cach nhung lan nhap lai tiep theo
 	scanf("%c", &choice);
 	if(choice == 'c' || choice == 'C'){
 		return 1;
