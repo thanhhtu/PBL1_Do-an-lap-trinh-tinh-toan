@@ -1,18 +1,6 @@
 #define M 2003	//kich thuoc hashtable
 
-//cau truc cua 1 tu vung
-struct Vocab{
-    char english[256];
-    char type[256];
-    char meaning[256];
-};
 typedef struct Vocab Vocab;
-
-//cau truc cua 1 node 
-struct DictNode{
-    Vocab word;
-    DictNode *next;
-};
 typedef struct DictNode DictNode;
 
 void addData(DictNode *heads[], Vocab w);
@@ -34,6 +22,19 @@ void searchWord(DictNode *heads[]);
 void tolower(char eng[]);
 void updateDict(DictNode *heads[]);
 void viewDict(DictNode *heads[]);
+
+//cau truc cua 1 tu vung
+struct Vocab{
+    char english[256];
+    char type[256];
+    char meaning[256];
+};
+
+//cau truc cua 1 node 
+struct DictNode{
+    Vocab word;
+    DictNode *next;
+};
 
 //khoi tao hashtable
 void init(DictNode *heads[]){
