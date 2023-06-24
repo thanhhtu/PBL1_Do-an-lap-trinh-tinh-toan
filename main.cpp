@@ -9,7 +9,6 @@
 #include "menu.h"
 #include "funct.h"
 
-
 int main(){
 	title();
 	getch();
