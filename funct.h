@@ -1,40 +1,19 @@
 #define M 2003	//kich thuoc hashtable
 
-typedef struct Vocab Vocab;
-typedef struct DictNode DictNode;
-
-void addData(DictNode *heads[], Vocab w);
-void addWord(DictNode *heads[]);
-DictNode* createNode(Vocab w);
-int deleteData(DictNode *heads[], char eng[]);
-void deleteWord(DictNode *heads[]);
-void display(DictNode *r);
-void editWord(DictNode *heads[]);
-int findData(DictNode *heads[], char eng[], DictNode *&r);
-int hashFunct(char *str);
-int index(DictNode *heads[], int not_nulll);
-void init(DictNode *heads[]);
-void playGame(DictNode *heads[], int not_null[], int number_of_not_null);
-int random(int lenght);
-void readDict(DictNode *heads[]);
-int replace(char eng[]);
-void searchWord(DictNode *heads[]);
-void tolower(char eng[]);
-void updateDict(DictNode *heads[]);
-void viewDict(DictNode *heads[]);
-
 //cau truc cua 1 tu vung
 struct Vocab{
     char english[256];
     char type[256];
     char meaning[256];
 };
+typedef struct Vocab Vocab;
 
 //cau truc cua 1 node 
 struct DictNode{
     Vocab word;
     DictNode *next;
 };
+typedef struct DictNode DictNode;
 
 //khoi tao hashtable
 void init(DictNode *heads[]){
